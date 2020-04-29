@@ -98,3 +98,109 @@ let mathStuff2 = {
     return a * a;
   },
 };
+
+///computer property names
+
+//desstructing +++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+//destructring objects ------------------
+
+const teaOrder = {
+  variety: "oolong",
+  teaName: "winter sprount",
+  origin: "taiwan",
+  price: 12.99,
+  hasCaffine: true,
+  quantity: 3,
+};
+
+/// old way of extracting values and putting them into variables
+
+// const price = teaOrder.pric;
+// const quantitiy = teaOrder.quantity;
+
+/// new way of extracting values
+// const { price, quantity, teaName } = teaOrder;
+const { origin } = teaOrder;
+
+// we can use the rest operator to collect the rest of the keys
+
+const { price, quantity, teaName, ...others } = teaOrder;
+// we can create a default value for a value
+const { brewTemp = 165 } = teaOrder;
+
+//destrucuting in a function and aadding a default value
+
+function checkout(tea) {
+  const { quantity = 1, price } = tea;
+  console.log(quantity * price);
+}
+checkout(teaOrder);
+
+const teaOrder2 = {
+  variety: "green",
+  teaName: "silver needle",
+  origin: "taiwan",
+  price: 12.99,
+  hasCaffine: true,
+  quantity: 3,
+};
+
+checkout(teaOrder2); // returns 12.99 due to the default value of 1
+
+/// destrucuting arrays +++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// unlike object descturing where the naming matters, with arrays it is a matter of position
+
+const students = [
+  { name: "drake", gpa: 4.5 },
+  { name: "bob", gpa: 2.2 },
+  { name: "fefit", gpa: 4 },
+  { name: "mike", gpa: 3.4 },
+];
+
+const [topSutdnet] = students;
+
+/// we can alose us the rest operator
+const [first, ...losers] = students;
+
+/// funciton destructring  +++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+//we can use destructring to extract key/vales pairs from an object in variables.
+
+const teaOrder3 = {
+  variety: "green",
+  teaName: "silver needle",
+  origin: "taiwan",
+  price: 12.99,
+  hasCaffine: true,
+  quantity: 4,
+};
+
+//similar to the checkout  example above :
+
+function getTotalTea({ quantity = 1, price }) {
+  return quantity * price;
+}
+
+const longJumpResults = ["tam", "jak", "mik", "lik"];
+
+function awardMedals([gold, silver, bronze]) {
+  return { gold, silver, bronze };
+}
+// {gold: "tam", silver: "jak", bronze: "mik"}
+
+//destructuring nested objects +++++++++++++++++++++++++++++=
+
+//destructuring swap +++++++++++++++++++++++++++++=
+
+let good = "mayo";
+let bad = "whipped cream";
+// old way of swaping, we need to create a temporary holder variable
+// let temp = good;
+// good = bad;
+// bad = temp;
+
+//new way using destrucutring
+
+[bad, good] = [good, bad];
