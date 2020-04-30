@@ -204,3 +204,133 @@ let bad = "whipped cream";
 //new way using destrucutring
 
 [bad, good] = [good, bad];
+
+//*************************************************** */
+//*************** Maps And Sets ********************* */
+//*************************************************** */
+
+const myMap = new Map();
+myMap.set(6, "six");
+
+//this will not work we we try
+// myMap.get as a key because arrays are reference types
+// so we need to store the array in a variable
+myMap.set(["arry"], "array");
+
+const myArrr = ["array"];
+
+myMap.set(myArrr, "array");
+
+/// Map Methods++++++++++++++++
+//using functions as keys
+const mult = (x, y) => x * y;
+
+const funcCalls = new Map();
+funcCalls.set(mult, 0);
+
+// we can add data to a mapp without using . set
+const bandData = [
+  [3, "three doors"],
+  ["third", "thrid eye"],
+  [9, "nine inch"],
+];
+
+const bandMap = new Map(bandData);
+
+//we can also turn the keys back into an array using the spread
+//operator.
+
+const bandData2 = [...bandMap];
+
+/// we can chain sets together
+
+bandMap.set(182, "blink").set("twenty", "mathcbox");
+
+//.has()
+//returns true or false
+
+bandMap.has(182); //true
+
+//.delete
+//will delete an item based on a key
+bandMap.delete("twenty");
+
+//.clear
+//will empty out an entire map
+// bandMap.clear()
+
+//.keys
+//will access all the keys in the map
+// it is an interable so we can use the spread to turn it into and array
+
+bandMap.keys();
+
+let bandKeys = [...bandMap.keys()];
+// [3, "third", 9, 182]
+
+//.values
+/// does the same thing as keys just for the values
+
+//Looping with Map +++++++++++++++++++++++++++++
+
+//we can use .size to determine the size of the map
+
+bandMap.size; // 4
+
+// we can loop over  a map
+//its value then key as parameters specifically in forEach
+bandMap.forEach((val, key) => {
+  console.log(key + val);
+});
+/// this will return an array of each key value
+// for (let x of bandMap) {
+//   console.log(x);
+// }
+
+for (let [key, val] of bandMap) {
+  console.log(key, "=", val);
+}
+
+//////// Sets ++++++++++++++++++++++++++++++++++++++++++++++
+
+//only store unique values
+
+let bHH = ["yolo", "no filter", "winning", "ratchet"];
+
+//we cannont pass in multiple arguments, only one interable
+const bannedHashTags = new Set(bHH); // or we can pass in the one array directly
+// we can add to the set
+bannedHashTags.add("bestlife").add("selfie");
+
+// we can check if a set contains an intem with the .has
+
+bannedHashTags.has("yolo"); // true
+//also have access to .delete and .clear like on Map
+
+function filterHash(tags) {
+  return tags.filter((tag) => !bannedHashTags.has(tag));
+}
+
+const susansTags = [
+  "happy monday",
+  "keep trucking",
+  "yolo",
+  "dont give up",
+  "selfie",
+];
+
+filterHash(susansTags); /// will filter out and items found in the banned hastags set
+
+// using a set is very effeicent. a primary reasont to use it over an array
+
+/// its also a very effcient way to remove duplicates from arrays
+
+const ages = [22, 33, 5, 55, 8, 9, 44, 33, 22, 66, 34, 6, 8];
+// removes all the duplicate elements from the array and then turn
+// the set back into an array using the spread operator
+const noDupeAges = new Set(ages); // [... new Set(ages)]
+
+/// we can then spread that into an array so that we have access to array methods
+//using the spread operator
+
+const newAgesArray = [...noDupeAges];
